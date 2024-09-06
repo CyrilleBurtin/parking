@@ -7,6 +7,7 @@ import ActionCard from './ActionCard.vue';
 const { releaseLots, lots } = useParkingLots();
 const ticketNumber = ref();
 const ticketError = ref(false);
+const successMessage = ref(false);
 
 const returnTicket = () => {
   const availableLots = getAvailableLot(lots);
@@ -19,6 +20,10 @@ const returnTicket = () => {
     releaseLots(arrayIndex);
     ticketNumber.value = null;
     ticketError.value = false;
+    successMessage.value = true;
+    setTimeout(() => {
+      successMessage.value = false;
+    }, 2000);
   } else {
     ticketError.value = true;
     ticketNumber.value = null;
@@ -51,9 +56,10 @@ const returnTicket = () => {
         exit parking
       </button>
     </template>
+    <template #info v-if="successMessage"> La barrière va s'ouvrir </template>
     <template #warning v-if="ticketError">
-      Le numéro de ticket entré correspond à une place déjà libre. Veuillez ressaisir votre numéro
-      de place.
+      Le numéro de ticket entré correspond à une place libre. Veuillez ressaisir votre numéro de
+      place.
     </template>
   </ActionCard>
 </template>

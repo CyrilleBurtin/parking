@@ -4,9 +4,14 @@ import { useParkingLots } from '@/stores/parkingLots';
 import ActionCard from './ActionCard.vue';
 const { removeLots } = useParkingLots();
 const assignatedLotsNumber = ref();
+const successMessage = ref(false);
 
 const getTicket = () => {
   assignatedLotsNumber.value = removeLots();
+  successMessage.value = true;
+  setTimeout(() => {
+    successMessage.value = false;
+  }, 2000);
 };
 </script>
 
@@ -18,16 +23,15 @@ const getTicket = () => {
     </template>
     <template #button>
       <button
+        :disabled="successMessage"
         @click="getTicket"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
         get ticket
       </button>
     </template>
-    <template #info>
-      <div v-if="assignatedLotsNumber">
-        Votre place attribuée est la {{ assignatedLotsNumber + 1 }}
-      </div>
+    <template #info v-if="successMessage && assignatedLotsNumber">
+      <div>Votre place attribuée est la {{ assignatedLotsNumber + 1 }}</div>
     </template>
   </ActionCard>
 </template>

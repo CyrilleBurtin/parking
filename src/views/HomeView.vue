@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useParkingLots } from '../stores/parkingLots';
 import GetTicket from '../components/GetTicket.vue';
-import ExitParking from '../components/ExitParking.vue';
+import ExitParking from '../components/ExitParking/ExitParking.vue';
 import ParkingManagement from '@/components/ParkingManagement.vue';
 const { lots } = useParkingLots();
 </script>

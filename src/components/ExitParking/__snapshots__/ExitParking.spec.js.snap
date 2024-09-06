@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ExitTicket > shoulrender the component 1`] = `
+<div>
+  <div
+    class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  >
+    <a
+      href="#"
+    >
+      <h5
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        
+        <h2>
+          Sortie du parking
+        </h2>
+        
+      </h5>
+    </a>
+    <p
+      class="mb-3 font-normal text-gray-700 dark:text-gray-400"
+    >
+      
+      <p>
+        Entrez votre numéro de place pour sortir
+      </p>
+      <input
+        aria-describedby="helper-text-explanation"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        id="number-input"
+        max="10"
+        min="1"
+        required=""
+        type="number"
+      />
+      
+    </p>
+    
+    <button
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-500"
+      disabled=""
+    >
+       exit parking 
+    </button>
+    
+    <p
+      class="text-green-500"
+    >
+      
+      
+    </p>
+    <p
+      class="text-red-500"
+    >
+      
+      
+    </p>
+  </div>
+</div>
+`;

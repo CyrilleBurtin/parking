@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useParkingLots } from '@/stores/parkingLots';
-import { getAvailableLot } from '../utils/availableLots';
-import ActionCard from './ActionCard.vue';
+import { useParkingLots } from '../../stores/parkingLots';
+import { getAvailableLot } from '../../utils/availableLots';
+import ActionCard from '../ActionCard.vue';
 
 const { releaseLots, lots } = useParkingLots();
 const ticketNumber = ref<number | null>(null);
@@ -19,10 +19,10 @@ const returnTicket = () => {
   }
 
   const availableLots = getAvailableLot(lots);
-  const arrayIndex = ticketNumber.value ?? -1;
+  const matchLotsArrayIndex = ticketNumber.value ?? -1;
 
-  if (!availableLots.includes(arrayIndex)) {
-    releaseLots(arrayIndex);
+  if (!availableLots.includes(matchLotsArrayIndex)) {
+    releaseLots(matchLotsArrayIndex);
     resetForm(true);
   } else {
     resetForm(false);

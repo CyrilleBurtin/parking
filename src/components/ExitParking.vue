@@ -5,35 +5,48 @@ import { getAvailableLot } from '../utils/availableLots';
 import ActionCard from './ActionCard.vue';
 
 const { releaseLots, lots } = useParkingLots();
-const ticketNumber = ref();
+const ticketNumber = ref<number | null>(null);
 const ticketError = ref(false);
 const successMessage = ref(false);
 
+const validateTicketNumber = (ticket: number | null) =>
+  !(ticket === null || ticket < 1 || ticket > 10);
+
 const returnTicket = () => {
+  if (!validateTicketNumber(ticketNumber.value)) {
+    ticketError.value = true;
+    return;
+  }
+
   const availableLots = getAvailableLot(lots);
   const arrayIndex = ticketNumber.value - 1;
-  if (ticketNumber.value < 1 || ticketNumber.value > 9) {
-    ticketError.value = true;
-  }
 
   if (!availableLots.includes(arrayIndex)) {
     releaseLots(arrayIndex);
-    ticketNumber.value = null;
-    ticketError.value = false;
-    successMessage.value = true;
+    resetForm(true);
+  } else {
+    resetForm(false);
+  }
+};
+
+const resetForm = (success: boolean) => {
+  ticketNumber.value = null;
+  ticketError.value = !success;
+  successMessage.value = success;
+
+  if (success) {
     setTimeout(() => {
       successMessage.value = false;
     }, 2000);
-  } else {
-    ticketError.value = true;
-    ticketNumber.value = null;
   }
 };
 </script>
 
 <template>
   <ActionCard>
-    <template #title><h2>Sortie du parking</h2></template>
+    <template #title>
+      <h2>Sortie du parking</h2>
+    </template>
     <template #action>
       <p>Entrez votre numéro de place pour sortir</p>
       <input

@@ -20,7 +20,7 @@ const getTicket = () => {
       get ticket
     </button>
     <div v-if="assignatedLotsNumber">
-      Votre numéro de place attribuée est le {{ assignatedLotsNumber }}
+      Votre place attribuée est la {{ assignatedLotsNumber + 1 }}
     </div>
   </div>
 </template>

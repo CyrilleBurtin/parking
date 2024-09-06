@@ -22,7 +22,6 @@ export const useParkingLots = defineStore('parkingLots', () => {
       lots.value[id].isAvailable = true;
     } else {
       console.error(`Invalid lot ID: ${id}`);
-      console.log('fail');
     }
   };
 

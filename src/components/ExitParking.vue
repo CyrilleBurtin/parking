@@ -9,12 +9,13 @@ const ticketError = ref(false);
 
 const returnTicket = () => {
   const availableLots = getAvailableLot(lots);
-  if (ticketNumber.value < 0 || ticketNumber.value > 9) {
+  const arrayIndex = ticketNumber.value - 1;
+  if (ticketNumber.value < 1 || ticketNumber.value > 9) {
     ticketError.value = true;
   }
 
-  if (!availableLots.includes(ticketNumber.value)) {
-    releaseLots(ticketNumber.value);
+  if (!availableLots.includes(arrayIndex)) {
+    releaseLots(arrayIndex);
     ticketNumber.value = null;
   } else {
     ticketError.value = true;
@@ -31,8 +32,8 @@ const returnTicket = () => {
     <input
       type="number"
       v-model="ticketNumber"
-      min="0"
-      max="9"
+      min="1"
+      max="10"
       id="number-input"
       aria-describedby="helper-text-explanation"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

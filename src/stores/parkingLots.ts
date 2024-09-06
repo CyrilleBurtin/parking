@@ -12,7 +12,7 @@ export const useParkingLots = defineStore('parkingLots', () => {
 
     if (selectedLot !== -1 && lots.value[selectedLot]) {
       lots.value[selectedLot].isAvailable = false;
-    } else return false;
+    } else return null;
 
     return selectedLot;
   };

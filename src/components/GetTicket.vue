@@ -37,7 +37,7 @@ const showSuccessMessage = () => {
         Prendre un ticket
       </button>
     </template>
-    <template #info v-if="successMessage && assignatedLotsNumber !== null">
+    <template #info v-if="successMessage && assignatedLotsNumber">
       <div>Votre place attribuée est la {{ assignatedLotsNumber + 1 }}</div>
     </template>
   </ActionCard>

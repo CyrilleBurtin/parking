@@ -19,7 +19,7 @@ const returnTicket = () => {
   }
 
   const availableLots = getAvailableLot(lots);
-  const arrayIndex = ticketNumber.value - 1;
+  const arrayIndex = ticketNumber.value ?? -1;
 
   if (!availableLots.includes(arrayIndex)) {
     releaseLots(arrayIndex);

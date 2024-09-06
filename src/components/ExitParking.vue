@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useParkingLots } from '@/stores/parkingLots';
 import { getAvailableLot } from '../utils/availableLots';
+import ActionCard from './ActionCard.vue';
 
 const { releaseLots, lots } = useParkingLots();
 const ticketNumber = ref();
@@ -17,6 +18,7 @@ const returnTicket = () => {
   if (!availableLots.includes(arrayIndex)) {
     releaseLots(arrayIndex);
     ticketNumber.value = null;
+    ticketError.value = false;
   } else {
     ticketError.value = true;
     ticketNumber.value = null;
@@ -25,30 +27,33 @@ const returnTicket = () => {
 </script>
 
 <template>
-  <div>
-    <label for="number-input" class="block mb-2 text-sm font-medium text-gray-900"
-      >Entrez votre numéro de place pour sortir</label
-    >
-    <input
-      type="number"
-      v-model="ticketNumber"
-      min="1"
-      max="10"
-      id="number-input"
-      aria-describedby="helper-text-explanation"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      required
-    />
-    <p v-if="ticketError">
-      "Le numéro de ticket entré correspond à une place déjà libre. Veuillez ressaisir votre numéro
-      de place."
-    </p>
-    <button
-      @click="returnTicket"
-      :disabled="!ticketNumber"
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-500"
-    >
-      exit parking
-    </button>
-  </div>
+  <ActionCard>
+    <template #title><h2>Sortie du parking</h2></template>
+    <template #action>
+      <p>Entrez votre numéro de place pour sortir</p>
+      <input
+        type="number"
+        v-model="ticketNumber"
+        min="1"
+        max="10"
+        id="number-input"
+        aria-describedby="helper-text-explanation"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        required
+      />
+    </template>
+    <template #button>
+      <button
+        @click="returnTicket"
+        :disabled="!ticketNumber"
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-500"
+      >
+        exit parking
+      </button>
+    </template>
+    <template #warning v-if="ticketError">
+      Le numéro de ticket entré correspond à une place déjà libre. Veuillez ressaisir votre numéro
+      de place.
+    </template>
+  </ActionCard>
 </template>

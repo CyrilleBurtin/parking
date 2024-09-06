@@ -7,9 +7,9 @@ const { lots } = useParkingLots();
 </script>
 
 <template>
-  <div class="flex flex-col gap-16">
+  <div class="flex content-between flex-wrap gap-12">
     <GetTicket :lots="lots" />
     <ExitParking />
-    <ParkingManagement />
   </div>
+  <ParkingManagement />
 </template>

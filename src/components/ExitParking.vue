@@ -71,8 +71,7 @@ const resetForm = (success: boolean) => {
     </template>
     <template #info v-if="successMessage"> La barrière va s'ouvrir </template>
     <template #warning v-if="ticketError">
-      Le numéro de ticket entré correspond à une place libre. Veuillez ressaisir votre numéro de
-      place.
+      Le numéro de ticket entré est incorrect ! Vous devez entrer le numéro d'une place occupée
     </template>
   </ActionCard>
 </template>
